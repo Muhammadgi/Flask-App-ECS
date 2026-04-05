@@ -1,0 +1,26 @@
+name : Python Dependency Scan
+
+on:
+  workflow_call:
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11","3.12","3.13"] 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: setup python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: install pip audit
+        run: pip install pip-audit 
+
+      - name: Run Dependency Scan
+        run: pip-audit - r requirements.txt
