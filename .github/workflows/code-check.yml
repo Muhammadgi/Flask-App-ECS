@@ -1,8 +1,8 @@
 name: Code Scan
 
 on: 
-  push:
-    branches: [main]
+  workflow_call:
+    
 
 jobs:
   linter:

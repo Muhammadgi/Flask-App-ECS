@@ -1,0 +1,16 @@
+name : End To End DevSecOps Workflow
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+
+  code-scan:
+    uses: ./.github/workflows/code-check.yml
+
+  dependency-scan:
+    needs: code-scan
+    uses: ./.github/workflows/dependency-scan.yml
+  
+  
